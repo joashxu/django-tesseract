@@ -48,22 +48,22 @@ def reload():
 
 
 def setup():
-    # run("mkdir -p %(root)s" % env)
-    # sudo("aptitude update")
-    # sudo("aptitude -y install git-core python-dev python-setuptools "
-    #     "build-essential subversion mercurial nginx"
-    #     "libjpeg62 libjpeg62-dev zlib1g-dev libfreetype6 libfreetype6-dev "
-    #     "ghostscript imagemagick "
-    #     "libtesseract-dev")
+    run("mkdir -p %(root)s" % env)
+    sudo("aptitude update")
+    sudo("aptitude -y install git-core python-dev python-setuptools "
+        "build-essential subversion mercurial nginx"
+        "libjpeg62 libjpeg62-dev zlib1g-dev libfreetype6 libfreetype6-dev "
+        "ghostscript imagemagick "
+        "libtesseract-dev")
 
-    # sudo("easy_install virtualenv")
-    # run("virtualenv %(virtualenv)s" % env)
-    # run("%(virtualenv)s/bin/pip install -U pip" % env)
+    sudo("easy_install virtualenv")
+    run("virtualenv %(virtualenv)s" % env)
+    run("%(virtualenv)s/bin/pip install -U pip" % env)
 
-    #with cd("~/webapps/tesseract"):
-    #    run("git clone %(repo_url)s" % env)
-    #    run("touch %(project)s/djangotesseract/localsettings.py")
+    with cd("~/webapps/tesseract"):
+       run("git clone %(repo_url)s" % env)
+       run("touch %(project)s/djangotesseract/localsettings.py")
 
-    sudo('/etc/init.d/nginx start')
+    sudo('nginx')
 
     deploy()

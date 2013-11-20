@@ -183,6 +183,7 @@ LOGGING = {
 }
 
 TESSERACT_LOCAL = True
+TESSERACT_ENABLE_WEB = True
 
 try:
 	from djangotesseract.localsettings import *
