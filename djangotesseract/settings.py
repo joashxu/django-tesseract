@@ -128,6 +128,7 @@ INSTALLED_APPS = (
 	# Uncomment the next line to enable admin documentation:
 	# 'django.contrib.admindocs',
 	
+    'gunicorn',
 	'djangotesseract.djtesseract',
 )
 
@@ -180,6 +181,8 @@ LOGGING = {
 		},
 	}
 }
+
+TESSERACT_LOCAL = True
 
 try:
 	from djangotesseract.localsettings import *

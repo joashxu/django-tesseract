@@ -41,7 +41,8 @@ def update_dependencies():
 
 
 def reload():
-    sudo("stop setarisocr")
+    with settings(warn_only=True):
+        sudo("stop setarisocr")
     sudo("start setarisocr")
     sudo('/etc/init.d/nginx reload')
 
@@ -61,5 +62,8 @@ def setup():
 
     #with cd("~/webapps/tesseract"):
     #    run("git clone %(repo_url)s" % env)
+    #    run("touch %(project)s/djangotesseract/localsettings.py")
+
+    sudo('/etc/init.d/nginx start')
 
     deploy()
