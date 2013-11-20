@@ -4,7 +4,7 @@ import os
 def next_to_this_file(additional_path, this_file = __file__):
 	return os.path.join(os.path.dirname(os.path.abspath(this_file)), additional_path)
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
