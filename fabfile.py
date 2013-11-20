@@ -5,7 +5,7 @@ from fabric.contrib.files import upload_template
 
 
 env.user = "ubuntu"
-env.hosts = ['ec2-23-21-150-134.compute-1.amazonaws.com']
+env.hosts = ['ec2-54-242-2-159.compute-1.amazonaws.com']
 env.key_filename = ["demo.pem"]
 env.repo_url = 'git@github.com:joashxu/django-tesseract.git'
 
@@ -35,6 +35,9 @@ def update_services():
     upload_template('./deployment/service.conf',
         '/etc/init/setarisocr.conf', use_sudo=True)
 
+    with cd("/etc/nginx/sites-enabled"):
+        sudo('rm *.bak')
+
 
 def update_dependencies():
     run("%(virtualenv)s/bin/pip install -r %(project)s/requirements.txt" % env)
@@ -42,8 +45,8 @@ def update_dependencies():
 
 def reload():
     with settings(warn_only=True):
-        sudo("stop setarisocr")
-    sudo("start setarisocr")
+        sudo("sudo initctl stop setarisocr")
+    sudo("sudo initctl start setarisocr")
     sudo('/etc/init.d/nginx reload')
 
 
